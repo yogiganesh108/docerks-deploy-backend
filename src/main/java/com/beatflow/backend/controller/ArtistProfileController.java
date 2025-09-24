@@ -7,7 +7,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/artists")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 public class ArtistProfileController {
     private final ArtistProfileRepository artistProfileRepository;
     public ArtistProfileController(ArtistProfileRepository artistProfileRepository) { this.artistProfileRepository = artistProfileRepository; }
