@@ -7,7 +7,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/albums")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 public class AlbumController {
     private final AlbumRepository albumRepository;
     public AlbumController(AlbumRepository albumRepository) { this.albumRepository = albumRepository; }
