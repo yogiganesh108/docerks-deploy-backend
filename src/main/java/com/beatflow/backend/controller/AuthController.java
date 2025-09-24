@@ -32,6 +32,12 @@ public class AuthController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @GetMapping("")
+    public String fun(){
+        return "this is working";
+    }
+    
     
     /**
      * Endpoint for user authentication.
