@@ -56,6 +56,14 @@ public class SecurityConfig {
 
         return http.build();
     }
+    @Override
+protected void configure(HttpSecurity http) throws Exception {
+    http
+        .csrf().disable()
+        .authorizeRequests()
+        .antMatchers("/api/auth/**").permitAll() // allow all
+        .anyRequest().authenticated();
+}
 
     @Bean
     public AuthenticationProvider authenticationProvider(UserDetailsService userDetailsService) {
