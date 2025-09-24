@@ -7,7 +7,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/playlists")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 public class PlaylistController {
     private final PlaylistRepository playlistRepository;
     public PlaylistController(PlaylistRepository playlistRepository) { this.playlistRepository = playlistRepository; }
