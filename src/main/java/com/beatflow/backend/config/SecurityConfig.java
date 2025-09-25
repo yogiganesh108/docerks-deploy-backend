@@ -37,20 +37,22 @@ public class SecurityConfig {
                 // Allow preflight requests from browsers
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
-                // Public endpoints
+                // Public endpoints (frontend API can access these without authentication)
                 .requestMatchers(
                     "/", "/index.html",
                     "/api/auth/**",
                     "/api/playlists/**",
                     "/api/artists/**",
+                    "/api/albums/**",
+                    "/api/tracks/**",
                     "/actuator/health",
                     "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html",
-
-                    // Static resources (if served by backend)
+                    
+                    // Static resources
                     "/css/**", "/js/**", "/images/**", "/webjars/**"
                 ).permitAll()
 
-                // Everything else requires auth
+                // Everything else requires authentication
                 .anyRequest().authenticated()
             )
             .authenticationProvider(authenticationProvider)
@@ -84,11 +86,11 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    // CORS: allow your frontend (adjust origin/ports as needed)
+    // CORS configuration: allow frontend development server
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration c = new CorsConfiguration();
-        // For development: allow all. In prod, set your exact origin(s), e.g. http://localhost:3000
+        // Replace '*' with your frontend URL if using credentials
         c.setAllowedOriginPatterns(List.of("*"));
         c.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         c.setAllowedHeaders(List.of("*"));
@@ -99,4 +101,3 @@ public class SecurityConfig {
         return source;
     }
 }
-
